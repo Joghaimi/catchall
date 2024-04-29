@@ -38,11 +38,23 @@
 .background-container {
   width: 100%;
   height: 100vh;
-  background-image: url('../assets/images/background_1.jpg');
+  /* background-image: url('../assets/images/background_1.jpg'); */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
+}
+.background-Image1{
+  background-image: url('../assets/images/background-01.jpg');
+}
+.background-Image2{
+  background-image: url('../assets/images/background2-01.jpg');
+}
+.background-Image3{
+  background-image: url('../assets/images/background3-01.jpg');
+}
+.background-Image4{
+  background-image: url('../assets/images/background4-01.jpg');
 }
 
 .background-overlay {
@@ -64,4 +76,59 @@
   color: #ffffff; /* Text color */
   background-color: #ffcc00; /* Background color */
   border-radius: 5px; /* Rounded corners */
+}
+
+
+
+.video-game-button {
+  text-shadow: 1px 1px pink, -1px -1px maroon;
+
+  line-height: 1.5em;
+  text-align: center;
+  display: inline-block;
+  width: 1.5em;
+  -webkit-border-radius: .75em;
+  -moz-border-radius: .75em;
+  -o-border-radius: .75em;
+  border-radius: .75em;
+  background-color: red;
+  -webkit-box-shadow: 0 .2em maroon;
+  -moz-box-shadow: 0 .2em maroon;
+  -o-box-shadow: 0 .2em maroon;
+  box-shadow: 0 .2em maroon;
+  color: red;
+  margin: 5px;
+  background-color: red;
+  background-image: -o-linear-gradient(left top, pink 3%, red 22%, maroon 99%);
+  background-image: -moz-linear-gradient(left top, pink 3%, red 22%, maroon 99%);
+  background-image: -webkit-linear-gradient(left top, pink 3%, red 22%, maroon 99%);
+  background-image: linear-gradient(left top, pink 3%, red 22%, maroon 99%);
+  cursor: pointer;
+  padding-left: 5px;
+}
+
+.start-btn {
+  text-align: center;
+  display: inline-block;
+  margin: 5px;
+  font-weight: bold;
+  padding: 10px 0 10px 10px;
+  background-color: lightgray;
+  text-shadow: -1px -1px black, 1px 1px white;
+  color: gray;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px;
+  box-shadow: 0 .2em gray;
+  cursor: pointer;
+  font-size: 25px;
+
+}
+
+.video-game-button:active,
+.start-btn:active {
+  box-shadow: none;
+  position: relative;
+  top: .2em;
 }
