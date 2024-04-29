@@ -39,10 +39,19 @@ export class TeamService {
         return this.httpClient.get('http://' + roomName + '.local:5000/api/' + roomName2 + '/IsOccupied');
     }
    
-    startTheGame(roomName1: string, roomName: string) {
+    // startTheGame(roomName1: string, roomName: string) {
+    //     // return this.httpClient.post('https://' + roomName1 + '.local:7248/api/' + roomName + '/StartStopGame?startGame=true', true);
+    //     return this.httpClient.post('http://' + roomName1 + '.local:5000/api/' + roomName + '/StartStopGame?startGame=true', true);
+    // }
+
+    startTheGame() {
         // return this.httpClient.post('https://' + roomName1 + '.local:7248/api/' + roomName + '/StartStopGame?startGame=true', true);
-        return this.httpClient.post('http://' + roomName1 + '.local:5000/api/' + roomName + '/StartStopGame?startGame=true', true);
+        return this.httpClient.post('http://localhost:5221/api/Catchy/RoomStatus?gameStatus=Started', true);
     }
+
+
+
+
     getTeamMembersAndScore(roomName1: string, roomName: string): Observable<any> {
         // return this.httpClient.get('https://' + roomName1 + '.local:7248/api/' + roomName + '/ReturnScore');
         return this.httpClient.get('http://' + roomName1 + '.local:5000/api/' + roomName + '/ReturnScore');
