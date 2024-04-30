@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TeamService } from './Services/TeamService';
+import { Team } from './models/player';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ export class AppComponent {
   displayVideo = true;
   displayStartButton = false;
   StartTheGame = false;
-
+  team: Team = { player: [] };
   numberOfPlayer = 4;
   player1 = "Player 1";
   player2 = "Player 2";
@@ -26,72 +27,32 @@ export class AppComponent {
   constructor(private teamService: TeamService) {
     // this.game();
   }
-  game() {
+  // game() {
 
-    let isTimerStarted = false;
-    let timerIsSet = false;
-    setInterval(() => {
-      if (this.StartTheGame) {
-        // Send Start The Game
-        // Start The Timer
-        this.teamService.RoomTime().subscribe(
-          time => {
-            this.gameTime = time;
-            timerIsSet = true;
-          }
-        );
-        //
-
-      }
+  //   let isTimerStarted = false;
+  //   let timerIsSet = false;
+  //   setInterval(() => {
+  //     if (this.StartTheGame) {
 
 
 
+  //       // Send Start The Game
+  //       // Start The Timer
+  //       this.teamService.RoomTime().subscribe(
+  //         time => {
+  //           this.gameTime = time;
+  //           timerIsSet = true;
+  //         }
+  //       );
+  //       //
+
+  //     }
 
 
 
-      // this.teamService.GameStatus(this.gameUrl1, this.gameUrl).subscribe(
-      //   e => {
-      //     this.gameStatus = e;
-      //   }
-      // );
-      // // =====> Timer 
-      // let tmerNotSetAndGameStarted = (!timerIsSet && this.gameStatus != "Started");
-      // if (this.gameStatus != "NotStarted" || tmerNotSetAndGameStarted) {
-      //   // Get Timer 
-      //   this.teamService.RoomTime(this.gameUrl1, this.gameUrl).subscribe(
-      //     time => {
-      //       this.gameTotalTime = time;
-      //       timerIsSet = true;
-      //     }
-      //   );
-      //   this.teamService.getTeamMembersAndScore(this.gameUrl1, this.gameUrl).subscribe(
-      //     e => {
-      //       this.team = e;
-      //     }
-      //   );
-      // }
 
-      // if (this.gameStatus == "Started" && !isTimerStarted && timerIsSet) {
-      //   this.startTimer();
-      //   isTimerStarted = true;
-      //   this.teamService.getTeamMembersAndScore(this.gameUrl1, this.gameUrl).subscribe(
-      //     e => {
-      //       this.team = e;
-      //       this.totalScore = this.team.darkRoomScore + this.team.divingRoomScore + this.team.darkRoomScore
-      //       + this.team.floorIsLavaRoomScore + this.team.fortRoomScore ;
-      //     }
-      //   );
-      //   console.log("Time Started");
-      // }
-      // if (this.gameStatus == "Empty"){
-      //   isTimerStarted =false;
-      //   timerIsSet =false;
-      // }
-
-
-
-    }, 1000);
-  }
+  //   }, 1000);
+  // }
 
 
 
@@ -104,6 +65,48 @@ export class AppComponent {
   getPlayers() {
     if (this.StartTheGame)
       return;
+    this.teamService.getTeamMembers().subscribe(
+      e => {
+        this.team.player = e;
+        console.log("this.team.player[0].firstName");
+        console.log(this.team.player[0].firstname);
+        this.team.player.forEach(
+          player => {
+            player.score = 0;
+          }
+        );
+        this.numberOfPlayer = this.team.player.length;
+        // Send Teams To The Game 
+        this.teamService.SendTeamMamber(this.team).subscribe(
+          res => {
+            this.StartTheGame = true;
+            let intervalId = setInterval(() => {
+              if (this.StartTheGame) {
+                this.teamService.RoomTime().subscribe(
+                  time => {
+                    this.gameTime = time;
+                    if (this.gameTime == 0) {
+                      clearInterval(intervalId);
+                      this.StartTheGame=false;
+                      window.location.reload();
+                    }
+                  }
+                );
+                // Update Score
+                this.teamService.getTeamScore().subscribe(
+                  score => {
+                    if (score != null)
+                      this.team = score;
+                  }
+                )
+              }
+            }, 1000);
+          }
+        )
+        console.log(this.team.player[0]);
+      }
+    );
+    return;
     this.teamService.startTheGame().subscribe(
       e => {
         this.StartTheGame = true;

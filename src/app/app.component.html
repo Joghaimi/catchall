@@ -1,5 +1,7 @@
 <!-- The video -->
-<video class="button-container" style="width: 100vh" id="myVideo" *ngIf="displayVideo" (click)="myFunction()" autoplay muted>
+
+<video id="video" class="button-container" style="width: 100vh" id="myVideo" *ngIf="displayVideo" (click)="myFunction()"
+  autoplay muted>
   <!-- displayVideo -->
   <source src="../assets/video/Introduction.mp4" type="video/mp4">
 </video>
@@ -14,34 +16,34 @@
       <div class="row pt-5 align-items-center">
         <div class="col" *ngIf="numberOfPlayer>1">
           <div class="row d-flex justify-content-center fw-bolder" style="font-size: 40px;">
-            {{player1}}
+            {{team.player[0]?.firstname +" " +team.player[0]?.lastname}}
           </div>
           <div class="row d-flex justify-content-center fw-bolder" style="font-size: 40px;margin-top: 30%;">
-            Score 2
+            {{team.player[0]?.score}}
           </div>
         </div>
         <div class="col" *ngIf="numberOfPlayer>1">
           <div class="row d-flex justify-content-center fw-bolder" style="font-size: 40px;">
-            {{player2}}
+            {{team.player[1]?.firstname +" " +team.player[1]?.lastname}}
           </div>
           <div class="row d-flex justify-content-center fw-bolder" style="font-size: 40px;margin-top: 30%;">
-            Score 2
+            {{team.player[1]?.score}}
           </div>
         </div>
         <div class="col" *ngIf="numberOfPlayer>2">
           <div class="row d-flex justify-content-center fw-bolder" style="font-size: 40px;">
-            {{player3}}
+            {{team.player[2]?.firstname +" " +team.player[2]?.lastname}}
           </div>
           <div class="row d-flex justify-content-center fw-bolder" style="font-size: 40px;margin-top: 30%;">
-            Score 2
+            {{team.player[2]?.score}}
           </div>
         </div>
         <div class="col" *ngIf="numberOfPlayer>3">
           <div class="row d-flex justify-content-center fw-bolder" style="font-size: 40px;">
-            {{player4}}
+            {{team.player[3]?.firstname +" " +team.player[3]?.lastname}}
           </div>
           <div class="row d-flex justify-content-center fw-bolder" style="font-size: 40px;margin-top: 30%;">
-            Score 2
+            {{team.player[3]?.score}}
           </div>
         </div>
 
@@ -51,11 +53,11 @@
         <div class="col d-flex align-items-center justify-content-center mt-5" style="min-height: 50vh;">
           <h1 class="fw-bolder" style="font-family: 'alarm clock', sans-serif; font-size: 95px;"
             *ngIf="numberOfPlayer>1">
-            {{this.gameTime  | timeFormat }}
+            {{this.gameTime | timeFormat }}
             <!-- 12:06 -->
           </h1>
           <button class="button-container start-btn btn font-weight-bold px-5 py-3" *ngIf="numberOfPlayer==1"
-           (click) ="getPlayers()">
+            (click)="getPlayers()">
             Start
           </button>
         </div>
