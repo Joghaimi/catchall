@@ -1,5 +1,7 @@
-<!-- The video -->
+<div class="background-overlay" style="z-index: 100;" *ngIf="enableRestartTheGame" (click)="reload()">
+</div>
 
+<!-- The video -->
 <video id="video" class="button-container" style="width: 100vh" id="myVideo" *ngIf="displayVideo" (click)="myFunction()"
   autoplay muted>
   <!-- displayVideo -->

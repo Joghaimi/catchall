@@ -12,6 +12,7 @@ export class AppComponent {
   displayVideo = true;
   displayStartButton = false;
   StartTheGame = false;
+  enableRestartTheGame=false;
   team: Team = { player: [] };
   numberOfPlayer = 4;
   player1 = "Player 1";
@@ -62,6 +63,9 @@ export class AppComponent {
     this.numberOfPlayer = 1;
     console.log("--------->>>");
   }
+  reload(){
+    window.location.reload();
+  }
   getPlayers() {
     if (this.StartTheGame)
       return;
@@ -88,7 +92,8 @@ export class AppComponent {
                     if (this.gameTime == 0) {
                       clearInterval(intervalId);
                       this.StartTheGame=false;
-                      window.location.reload();
+                      this.enableRestartTheGame=true;
+                      //window.location.reload();
                     }
                   }
                 );
