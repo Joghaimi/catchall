@@ -11,14 +11,14 @@ export class TeamService {
     constructor(private httpClient: HttpClient) { }
 
     RoomTime() {
-        return this.httpClient.get<number>('http://localhost:5221/api/Catchy/CurrentTime');
+        return this.httpClient.get<number>('http://catchy.local:5221/api/Catchy/CurrentTime');
     }
     SendTeamMamber(Team: Team) {
-        return this.httpClient.post('http://localhost:5221/api/Catchy/ReceiveScore', Team);
+        return this.httpClient.post('http://catchy.local:5221/api/Catchy/ReceiveScore', Team);
     }
     getTeamScore(): Observable<Team> {
         // return this.httpClient.get('https://' + roomName1 + '.local:7248/api/' + roomName + '/GetScore');
-        return this.httpClient.get<Team>('http://localhost:5221/api/Catchy/GetScore');
+        return this.httpClient.get<Team>('http://catchy.local:5221/api/Catchy/GetScore');
     }
 
     getRound(roomName1: string, roomName: string): Observable<any> {
