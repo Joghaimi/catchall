@@ -43,25 +43,26 @@ export class AppComponent {
       return;
     this.teamService.getTeamMembers().subscribe(
       e => {
+
         this.team.player = e;
         if (this.team.player.length > 0) {
           let lastBillNumber = this.team.player[this.team.player.length - 1].billno
           this.team.player  = this.team.player.filter(player => player.billno == lastBillNumber)
-  
-          // console.log("this  .team.player[0].firstName");
-          // console.log(this.team.player[0].firstname);
+          console.log("getTeamMembers =>");
+          console.log(e);
+          // Workd ..
+          // this.teamService.markBillAsVoid(e).subscribe(
+          //   x=>{
+          //     console.log("MarkBillAsVoid =>");
+          //     console.log(x);
+          //   }
+          // );
           this.team.player.forEach(
             player => {
               player.score = 0;
-              // console.log(player.billno);
-              // console.log(player.firstname);
-
             }
           );
           this.numberOfPlayer = this.team.player.length;
-          // console.log("this.numberOfPlayer");
-          // console.log(this.numberOfPlayer);
-        
           // Send Teams To The Game 
           this.teamService.SendTeamMamber(this.team).subscribe(
             res => {
