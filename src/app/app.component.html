@@ -17,7 +17,7 @@
     <div class="container-fluid">
       <div class="row pt-5 align-items-center">
         <div class="col" *ngIf="numberOfPlayer>1">
-          <div class="row d-flex justify-content-center fw-bolder" style="font-size: 40px;color:#ff9600">
+          <div class="row d-flex justify-content-center fw-bolder" style="font-size: 40px;color:#fff600">
             {{team.player[0]?.firstname +" " +team.player[0]?.lastname}}
           </div>
           <div class="row d-flex justify-content-center fw-bolder text-white" style="font-size: 40px;margin-top: 30%;">
@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="col" *ngIf="numberOfPlayer>2">
-          <div class="row d-flex justify-content-center fw-bolder" style="font-size: 40px;color:#fff600">
+          <div class="row d-flex justify-content-center fw-bolder" style="font-size: 40px;color:blue">
             {{team.player[2]?.firstname +" " +team.player[2]?.lastname}}
           </div>
           <div class="row d-flex justify-content-center fw-bolder text-white" style="font-size: 40px;margin-top: 30%;">
@@ -41,7 +41,7 @@
           </div>
         </div>
         <div class="col" *ngIf="numberOfPlayer>3">
-          <div class="row d-flex justify-content-center fw-bolder" style="font-size: 40px;color:#00fff0">
+          <div class="row d-flex justify-content-center fw-bolder" style="font-size: 40px;color:red">
             {{team.player[3]?.firstname +" " +team.player[3]?.lastname}}
           </div>
           <div class="row d-flex justify-content-center fw-bolder text-white" style="font-size: 40px;margin-top: 30%;">
