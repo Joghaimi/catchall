@@ -51,12 +51,12 @@ export class AppComponent {
           console.log("getTeamMembers =>");
           console.log(e);
           // Workd ..
-          // this.teamService.markBillAsVoid(e).subscribe(
-          //   x=>{
-          //     console.log("MarkBillAsVoid =>");
-          //     console.log(x);
-          //   }
-          // );
+          this.teamService.markBillAsVoid(e).subscribe(
+            x=>{
+              console.log("MarkBillAsVoid =>");
+              console.log(x);
+            }
+          );
           this.team.player.forEach(
             player => {
               player.score = 0;
