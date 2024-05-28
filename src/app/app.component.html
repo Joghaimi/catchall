@@ -1,10 +1,11 @@
+
+
 <div class="background-overlay" style="z-index: 100; height: 100vh;" *ngIf="enableRestartTheGame" (click)="reload()">
 </div>
 
 <!-- The video -->
 <video id="video" class="button-container" style="width: 100vh" id="myVideo" *ngIf="displayVideo" (click)="myFunction()"
   autoplay muted>
-  <!-- displayVideo -->
   <source src="../assets/video/Introduction.mp4" type="video/mp4">
 </video>
 <div class="background-container background-Image1" [ngClass]="{
@@ -64,9 +65,11 @@
               <img src="../assets/images/Layer w.png" alt="Description of the image" style="max-width: 70%; height: auto;"  *ngIf="numberOfPlayer > 1">
             </div>
           </div>
-          <button class="button-container start-btn btn font-weight-bold px-5 py-3" *ngIf="numberOfPlayer == 1" (click)="getPlayers()">
+          <button class="button-container start-btn btn font-weight-bold px-5 py-3" *ngIf="numberOfPlayer == 1 && !hiddeBtn" (click)="getPlayers()">
             Start
           </button>
+          <app-countdown *ngIf="numberOfPlayer == 1 && hiddeBtn"></app-countdown>
+
         </div>
       </div>
     </div>

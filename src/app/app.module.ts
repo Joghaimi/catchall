@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TimeFormatPipe } from './time-format.pipe';
+import { CountdownComponent } from './countdown/countdown.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TimeFormatPipe
+    TimeFormatPipe,
+    CountdownComponent
   ],
   imports: [
     BrowserModule,

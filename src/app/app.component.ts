@@ -13,6 +13,7 @@ export class AppComponent {
   displayStartButton = false;
   StartTheGame = false;
   enableRestartTheGame = false;
+  hiddeBtn = false;
   team: Team = { player: [] };
   numberOfPlayer = 4;
   player1 = "Player 1";
@@ -39,89 +40,68 @@ export class AppComponent {
     window.location.reload();
   }
   getPlayers() {
+    // return;
     if (this.StartTheGame)
       return;
     this.teamService.getTeamMembers().subscribe(
       e => {
+        this.hiddeBtn = true;
+        setTimeout(() => {
+          this.team.player = e;
+          if (this.team.player.length > 0) {
+            let lastBillNumber = this.team.player[this.team.player.length - 1].billno
+            this.team.player = this.team.player.filter(player => player.billno == lastBillNumber)
+            console.log("getTeamMembers =>");
+            console.log(e);
 
-        this.team.player = e;
-        if (this.team.player.length > 0) {
-          let lastBillNumber = this.team.player[this.team.player.length - 1].billno
-          this.team.player  = this.team.player.filter(player => player.billno == lastBillNumber)
-          console.log("getTeamMembers =>");
-          console.log(e);
-          // Workd ..
-          // this.teamService.markBillAsVoid(e).subscribe(
-          //   x=>{
-          //     console.log("MarkBillAsVoid =>");
-          //     console.log(x);
-          //   }
-          // );
-          this.team.player.forEach(
-            player => {
-              player.score = 0;
-            }
-          );
-          this.numberOfPlayer = this.team.player.length;
-          // Send Teams To The Game 
-          this.teamService.SendTeamMamber(this.team).subscribe(
-            res => {
-              this.StartTheGame = true;
-              let intervalId = setInterval(() => {
-                if (this.StartTheGame) {
-                  this.teamService.RoomTime().subscribe(
-                    time => {
-                      this.gameTime = time;
-                      if (this.gameTime == 0) {
-                        clearInterval(intervalId);
-                        this.StartTheGame = false;
-                        this.enableRestartTheGame = true;
-                        //window.location.reload();
+            // Workd ..
+            // this.teamService.markBillAsVoid(e).subscribe(
+            //   x=>{
+            //     console.log("MarkBillAsVoid =>");
+            //     console.log(x);
+            //   }
+            // );
+            this.team.player.forEach(
+              player => {
+                player.score = 0;
+              }
+            );
+            this.numberOfPlayer = this.team.player.length;
+            // Send Teams To The Game 
+            this.teamService.SendTeamMamber(this.team).subscribe(
+              res => {
+                this.StartTheGame = true;
+                let intervalId = setInterval(() => {
+                  if (this.StartTheGame) {
+                    this.teamService.RoomTime().subscribe(
+                      time => {
+                        this.gameTime = time;
+                        if (this.gameTime == 0) {
+                          clearInterval(intervalId);
+                          this.StartTheGame = false;
+                          this.enableRestartTheGame = true;
+                          //window.location.reload();
+                        }
                       }
-                    }
-                  );
-                  // Update Score
-                  this.teamService.getTeamScore().subscribe(
-                    score => {
-                      if (score != null)
-                        this.team = score;
-                    }
-                  )
-                }
-              }, 1000);
-            }
-          )
-          console.log(this.team.player[0]);
-        }
+                    );
+                    // Update Score
+                    this.teamService.getTeamScore().subscribe(
+                      score => {
+                        if (score != null)
+                          this.team = score;
+                      }
+                    )
+                  }
+                }, 1000);
+              }
+            )
+            console.log(this.team.player[0]);
+          }
+        }, 5000);
+
+
       }
     );
-    return;
-    // this.teamService.startTheGame().subscribe(
-    //   e => {
-    //     this.StartTheGame = true;
-    //     let PlayerNamesSent = false;
-    //     setInterval(() => {
-    //       if (this.StartTheGame) {
-    //         // Send Start The Game
-    //         if (!PlayerNamesSent) {
-    //           // Send Player Name
-    //           PlayerNamesSent = true;
-    //           this.numberOfPlayer = 2;
-    //         }
-    //         // Update Time 
-    //         this.teamService.RoomTime().subscribe(
-    //           time => {
-    //             this.gameTime = time;
-    //           }
-    //         );
-    //         // Update Score
-    //       }
-    //     }, 1000);
-    //   }
-    // );
-
-
-
 
   }
 
