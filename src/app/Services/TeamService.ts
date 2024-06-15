@@ -10,6 +10,10 @@ export class TeamService {
 
     constructor(private httpClient: HttpClient) { }
 
+    TopScore() {
+        return this.httpClient.get<number>('http://catchy.local:5221/api/Catchy/TopScore');
+    }
+
     RoomTime() {
         return this.httpClient.get<number>('http://catchy.local:5221/api/Catchy/CurrentTime');
     }

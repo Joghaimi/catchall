@@ -15,13 +15,13 @@ export class AppComponent {
   enableRestartTheGame = false;
   hiddeBtn = false;
   team: Team = { player: [] };
-  numberOfPlayer = 4;
+  numberOfPlayer = 0;
   player1 = "Player 1";
   player2 = "Player 2";
   player3 = "Player 3";
   player4 = "Player 4";
-
-  gameTime = 360;
+  topScore = 0;
+  gameTime = 120;
 
   /**
    *
@@ -61,12 +61,18 @@ export class AppComponent {
             //     console.log(x);
             //   }
             // );
+            this.teamService.TopScore().subscribe(
+              e=>{
+                this.topScore = e;
+              }
+            );
             this.team.player.forEach(
               player => {
                 player.score = 0;
               }
             );
-            this.numberOfPlayer = this.team.player.length;
+            // this.numberOfPlayer = this.team.player.length;
+            this.numberOfPlayer = 2;
             // Send Teams To The Game 
             this.teamService.SendTeamMamber(this.team).subscribe(
               res => {
@@ -80,7 +86,7 @@ export class AppComponent {
                           clearInterval(intervalId);
                           this.StartTheGame = false;
                           this.enableRestartTheGame = true;
-                          //window.location.reload();
+                          window.location.reload();
                         }
                       }
                     );

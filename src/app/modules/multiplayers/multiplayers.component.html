@@ -1,0 +1,85 @@
+
+
+<div class="background-overlay" style="z-index: 100; height: 100vh;" *ngIf="enableRestartTheGame" (click)="reload()">
+</div>
+
+<!-- The video -->
+<video id="video" class="button-container" style="width: 100vh" id="myVideo" *ngIf="displayVideo" (click)="myFunction()"
+  autoplay muted>
+  <source src="../assets/video/Introduction.mp4" type="video/mp4">
+</video>
+<div class="background-container background-Image1" [ngClass]="{
+    'background-Image1': numberOfPlayer ==1, 
+    'background-Image2': numberOfPlayer ==2, 
+    'background-Image3': numberOfPlayer ==3, 
+    'background-Image4': numberOfPlayer ==4
+    }">
+  <div class="background-overlay">
+    <div class="container-fluid">
+      <div class="row pt-5 align-items-center">
+        <div class="col" *ngIf="numberOfPlayer==1">
+          <div class="row d-flex justify-content-center fw-bolder" style="font-size: 40px;color:#fff600">
+            {{team.player[0]?.firstname +" " +team.player[0]?.lastname}}
+          </div>
+          <div class="row d-flex justify-content-center fw-bolder text-white" style="font-size: 40px;margin-top: 30%;">
+            {{team.player[0]?.score}}
+          </div>
+        </div>
+        <div class="col" *ngIf="numberOfPlayer>1">
+          <div class="row d-flex justify-content-center fw-bolder" style="font-size: 40px;color:#fff600">
+            {{team.player[0]?.firstname +" " +team.player[0]?.lastname}}
+          </div>
+          <div class="row d-flex justify-content-center fw-bolder text-white" style="font-size: 40px;margin-top: 30%;">
+            {{team.player[0]?.score}}
+          </div>
+        </div>
+        <div class="col" *ngIf="numberOfPlayer>1">
+          <div class="row d-flex justify-content-center fw-bolder" style="font-size: 40px;color:#00ff12">
+            {{team.player[1]?.firstname +" " +team.player[1]?.lastname}}
+          </div>
+          <div class="row d-flex justify-content-center fw-bolder text-white" style="font-size: 40px;margin-top: 30%;">
+            {{team.player[1]?.score}}
+          </div>
+        </div>
+        <div class="col" *ngIf="numberOfPlayer>2">
+          <div class="row d-flex justify-content-center fw-bolder" style="font-size: 40px;color:blue">
+            {{team.player[2]?.firstname +" " +team.player[2]?.lastname}}
+          </div>
+          <div class="row d-flex justify-content-center fw-bolder text-white" style="font-size: 40px;margin-top: 30%;">
+            {{team.player[2]?.score}}
+          </div>
+        </div>
+        <div class="col" *ngIf="numberOfPlayer>3">
+          <div class="row d-flex justify-content-center fw-bolder" style="font-size: 40px;color:red">
+            {{team.player[3]?.firstname +" " +team.player[3]?.lastname}}
+          </div>
+          <div class="row d-flex justify-content-center fw-bolder text-white" style="font-size: 40px;margin-top: 30%;">
+            {{team.player[3]?.score}}
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col d-flex align-items-center justify-content-center mt-5 text-white" style="min-height: 50vh;">
+          <div class="text-center">
+            <div>
+              <h1 class="fw-bolder" style="font-family: 'alarm clock', sans-serif; font-size: 95px;" *ngIf="numberOfPlayer > 1">
+                {{this.gameTime | timeFormat}}
+              </h1>
+            </div>
+        
+            <div>
+              <img src="../assets/images/Layer w.png" alt="Description of the image" style="max-width: 70%; height: auto;"  *ngIf="numberOfPlayer > 1">
+            </div>
+          </div>
+          <button class="button-container start-btn btn font-weight-bold px-5 py-3" *ngIf="numberOfPlayer == 1 && !hiddeBtn" (click)="getPlayers()">
+            Start
+          </button>
+          <app-countdown *ngIf="numberOfPlayer == 1 && hiddeBtn"></app-countdown>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
