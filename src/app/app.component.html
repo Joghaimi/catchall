@@ -19,11 +19,13 @@
           <div class="row d-flex justify-content-center fw-bolder" style="font-size: 40px;color:#fff600">
             {{team.player[0]?.firstname +" " +team.player[0]?.lastname}}
           </div>
-          <div class="row d-flex justify-content-center fw-bolder text-white" style="font-size: 60px;margin-top: 10%;">
-            Top Score :{{topScore}}
-          </div>
+          <!-- <div class="row d-flex justify-content-center fw-bolder text-white" style="font-size: 60px;margin-top: 10%;">
+           
+          </div> -->
           <div class="row d-flex justify-content-center fw-bolder text-white" style="font-size: 80px;margin-top: 5%;">
-            {{team.player[0]?.score}}
+            <div> Top Score :{{topScore}}</div>
+            <div>{{team.player[0]?.score}}</div>
+            
           </div>
         </div>
         <!-- <div class="col" *ngIf="numberOfPlayer>1">
