@@ -86,7 +86,10 @@ export class AppComponent {
                           clearInterval(intervalId);
                           this.StartTheGame = false;
                           this.enableRestartTheGame = true;
-                          window.location.reload();
+                          setTimeout(() => {
+                            window.location.reload();
+                         }, 2000);
+                          
                         }
                       }
                     );
