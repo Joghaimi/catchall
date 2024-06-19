@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Player, Team } from '../models/player';
+import { Player, Team, TopScore } from '../models/player';
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +11,7 @@ export class TeamService {
     constructor(private httpClient: HttpClient) { }
 
     TopScore() {
-        return this.httpClient.get<number>('http://catchy.local:5221/api/Catchy/TopScore');
+        return this.httpClient.get<TopScore>('http://catchy.local:5221/api/Catchy/TopScore');
     }
 
     RoomTime() {
@@ -31,7 +31,7 @@ export class TeamService {
     getTeamMembers(): Observable<Player[]> {
         return this.httpClient.post<Player[]>('https://qmdug12n2k.execute-api.us-east-1.amazonaws.com/dev/getcatchywallplayers', { "username": "frenzi", "password": "frenzi" });
     }
-    markBillAsVoid(paramter: any): Observable<any>  {
+    markBillAsVoid(paramter: any): Observable<any> {
         return this.httpClient.post<any>('https://qmdug12n2k.execute-api.us-east-1.amazonaws.com/dev/markcatchywallsync', { "username": "frenzi", "password": "frenzi", "bills": paramter });
     }
 

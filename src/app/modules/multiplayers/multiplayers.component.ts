@@ -15,7 +15,7 @@ export class MultiplayersComponent {
   StartTheGame = false;
   enableRestartTheGame = false;
   hiddeBtn = false;
-  team: Team = { player: [] };
+  team: Team = {teamName:"tet", player: [] };
   numberOfPlayer = 4;
   player1 = "Player 1";
   player2 = "Player 2";

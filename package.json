@@ -21,6 +21,7 @@
     "@ng-bootstrap/ng-bootstrap": "^16.0.0-rc.2",
     "bootstrap": "^5.3.3",
     "rxjs": "~7.5.0",
+    "simple-keyboard": "^3.7.86",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },

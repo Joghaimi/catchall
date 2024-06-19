@@ -7,13 +7,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { TimeFormatPipe } from './time-format.pipe';
 import { CountdownComponent } from './countdown/countdown.component';
 import { MultiplayersComponent } from './modules/multiplayers/multiplayers.component';
+import { TestKeyboardComponent } from './test-keyboard/test-keyboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TimeFormatPipe,
     CountdownComponent,
-    MultiplayersComponent
+    MultiplayersComponent,
+    TestKeyboardComponent
   ],
   imports: [
     BrowserModule,
