@@ -71,7 +71,7 @@ export class AppComponent {
         this.team.player = this.team.player.filter(player => player.billno == lastBillNumber)
 
         // Workd ..
-        this.teamService.markBillAsVoid(e).subscribe(
+        this.teamService.markBillAsVoid(lastBillNumber).subscribe(
           x=>{
             console.log("MarkBillAsVoid =>");
             console.log(x);
