@@ -71,12 +71,12 @@ export class AppComponent {
         this.team.player = this.team.player.filter(player => player.billno == lastBillNumber)
 
         // Workd ..
-        // this.teamService.markBillAsVoid(e).subscribe(
-        //   x=>{
-        //     console.log("MarkBillAsVoid =>");
-        //     console.log(x);
-        //   }
-        // );
+        this.teamService.markBillAsVoid(e).subscribe(
+          x=>{
+            console.log("MarkBillAsVoid =>");
+            console.log(x);
+          }
+        );
 
         this.getTopScorePlayer();
 
