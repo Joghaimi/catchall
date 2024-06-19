@@ -24,11 +24,11 @@ export class AppComponent {
   player2 = "Player 2";
   player3 = "Player 3";
   player4 = "Player 4";
-  topScore:TopScore = {name:"test" ,score: 0};
+  topScore: TopScore = { name: "test", score: 0 };
   gameTime = 120;
   teamName = "";
   keyboard!: Keyboard;
-
+  getTeamMemperResponse: any;
   /**
    *
    */
@@ -40,6 +40,9 @@ export class AppComponent {
         this.topScore = e;
       }
     );
+  }
+  ngOnInit() {
+    this.getTopScorePlayer();
   }
 
 
@@ -64,6 +67,8 @@ export class AppComponent {
   SaveTeamName() {
     this.showTeamNamming = false;
     this.showCountDown = true;
+    // this.getTopScorePlayer();
+
     setTimeout(() => {
       this.showCountDown = false;
       if (this.team.player.length > 0) {
@@ -71,14 +76,13 @@ export class AppComponent {
         this.team.player = this.team.player.filter(player => player.billno == lastBillNumber)
 
         // Workd ..
-        this.teamService.markBillAsVoid(lastBillNumber).subscribe(
-          x=>{
+        this.teamService.markBillAsVoid(this.getTeamMemperResponse).subscribe(
+          x => {
             console.log("MarkBillAsVoid =>");
             console.log(x);
           }
         );
 
-        this.getTopScorePlayer();
 
 
         this.team.player.forEach(
@@ -104,7 +108,7 @@ export class AppComponent {
                       this.enableRestartTheGame = true;
                       setTimeout(() => {
                         window.location.reload();
-                      },20000);
+                      }, 20000);
 
                     }
                   }
@@ -178,8 +182,14 @@ export class AppComponent {
       e => {
         this.hiddeBtn = true;
         this.team.player = e;
+        if (this.team.player.length < 1) {
+          alert("ادخل الاعبين");
+          this.reload();
+          return;
+        }
         this.showTeamNamming = true;
         this.getTopScorePlayer();
+        this.getTeamMemperResponse = e;
       }
     );
 
