@@ -2,46 +2,16 @@
 </div>
 
 <!-- The video -->
-<video id="video" class="button-container" style="width: 100vh" id="myVideo" *ngIf="gameStage == GameStage.playVideo"
-  (click)="removeVideo();myFunction()" autoplay muted loop>
+<video id="video" class="button-container" style="width: 100vh" id="myVideo" *ngIf="displayVideo" (click)="myFunction()"
+  autoplay muted loop>
   <source src="../assets/video/Introduction.mp4" type="video/mp4">
 </video>
 
 
-<div class="background-container background-Image1" [ngClass]="{
-    'background-Image2': GameMode.inWar == gameMode}">
+<div class="background-container background-Image1">
   <div class="background-overlay">
     <div class="container-fluid">
-
-      <!-- Start Game btn -->
-      <div class="row pt-5 align-items-center" style="min-height: 100vh;" *ngIf="gameStage == GameStage.getPlayers">
-        <div class="col-5"></div>
-        <div class="col-2 align-items-center">
-          <button class="button-container start-btn btn font-weight-bold px-5 py-3" (click)="getPlayers()">
-            Start
-          </button>
-        </div>
-        <div class="col-5"></div>
-      </div>
-
-      <!-- Select Game mode -->
-      <div class="row pt-5 align-items-center" style="min-height: 100vh;" *ngIf="gameStage == GameStage.SelectGameMode">
-        <div class="card text-white bg-primary mb-3 col-5 p-5" style="cursor: pointer;"
-          (click)="SelectGameMode(GameMode.inTeam)">
-          <div class="card-body">
-            <p class="card-text text-center" style="font-size: 50px;">Team</p>
-          </div>
-        </div>
-        <div class="col"></div>
-        <div class="card text-white bg-danger mb-3 col-5 p-5" style="cursor: pointer;"
-          (click)="SelectGameMode(GameMode.inWar)">
-          <div class="card-body">
-            <p class="card-text text-center" style="font-size: 50px;">War</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="row pt-5 align-items-center" *ngIf="GameStage.Go == gameStage" style="min-height: 100vh;">
+      <div class="row pt-5 align-items-center" *ngIf="!showTeamNamming">
         <div class="col" *ngIf="numberOfPlayer>1">
           <div class="row d-flex justify-content-center fw-bolder" style="font-size: 40px;color:#fff600">
             {{this.teamName}}
@@ -63,8 +33,7 @@
           </div>
         </div>
       </div>
-
-      <div class="row" *ngIf="GameStage.Go == gameStage">
+      <div class="row" *ngIf="!showTeamNamming">
         <div class="col d-flex align-items-center justify-content-center mt-1 text-white" style="min-height: 50vh;">
           <div class="text-center">
             <div>
@@ -76,15 +45,18 @@
             <div>
             </div>
           </div>
+
+          <button class="button-container start-btn btn font-weight-bold px-5 py-3"
+            *ngIf="numberOfPlayer == 1 && !hiddeBtn" (click)="getPlayers()">
+            Start
+          </button>
+          <app-countdown *ngIf="showCountDown"></app-countdown>
+
         </div>
       </div>
-      <div class="row" *ngIf="GameStage.CountDown == gameStage">
-        <div class="col d-flex align-items-center justify-content-center mt-1 text-white" style="min-height: 50vh;">
-          <app-countdown *ngIf="GameStage.CountDown == gameStage"></app-countdown>
-        </div>
-      </div>
-      <div class="d-flex align-items-center" style="min-height: 100vh; "
-        [style.visibility]="gameStage == GameStage.TeamName? 'visible' : 'hidden' ">
+      <div class="d-flex align-items-center" style="min-height: 100vh; display: nonr;"
+        [style.visibility]="!showTeamNamming ? 'hidden' : 'visible'">
+
         <div class="container text-white ">
           <div class="row d-flex justify-content-center fw-bolder text-white" style="font-size: 60px;margin-top: 5%;">
             Top Score :{{topScore.name}} - {{topScore.score}}

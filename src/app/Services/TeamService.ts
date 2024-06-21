@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Player, Team, TopScore } from '../models/player';
+import { GameMode, Player, Team, TopScore } from '../models/player';
 
 @Injectable({
     providedIn: 'root'
@@ -9,6 +9,13 @@ import { Player, Team, TopScore } from '../models/player';
 export class TeamService {
 
     constructor(private httpClient: HttpClient) { }
+
+    SelectGameMode(gameMode: GameMode) {
+        return this.httpClient.post('http://catchy.local:5221/api/Catchy/GameMode', gameMode);
+    }
+
+
+
 
     TopScore() {
         return this.httpClient.get<TopScore>('http://catchy.local:5221/api/Catchy/TopScore');

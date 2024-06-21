@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TeamService } from './Services/TeamService';
-import { GameMode, GameStage, Team, TopScore } from './models/player';
+import { Team, TopScore } from './models/player';
 import Keyboard from "simple-keyboard";
 import { FormsModule } from '@angular/forms';
 
@@ -10,17 +10,6 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
-  gameMode: GameMode = GameMode.inTeam;
-  gameStage: GameStage = GameStage.CountDown;
-
-  public get GameStage(): typeof GameStage {
-    return GameStage;
-  }
-  public get GameMode(): typeof GameMode {
-    return GameMode;
-  }
-
   title = 'catchall';
   showTeamNamming = false;
   showCountDown = false;
@@ -45,20 +34,6 @@ export class AppComponent {
    */
   constructor(private teamService: TeamService) {
   }
-  ngOnInit() {
-    this.getTopScorePlayer();
-  }
-
-  SelectGameMode(gameMode: GameMode) {
-    this.gameMode = gameMode;
-    this.teamService.SelectGameMode(gameMode).subscribe(
-      e => {
-        this.gameStage = GameStage.TeamName;
-      }
-    );
-  }
-
-
   getTopScorePlayer() {
     this.teamService.TopScore().subscribe(
       e => {
@@ -66,12 +41,34 @@ export class AppComponent {
       }
     );
   }
+  ngOnInit() {
+    this.getTopScorePlayer();
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
   SaveTeamName() {
     this.showTeamNamming = false;
     this.showCountDown = true;
+    // this.getTopScorePlayer();
+
     setTimeout(() => {
       this.showCountDown = false;
       if (this.team.player.length > 0) {
@@ -79,12 +76,12 @@ export class AppComponent {
         this.team.player = this.team.player.filter(player => player.billno == lastBillNumber)
 
         // Workd ..
-        // this.teamService.markBillAsVoid(this.getTeamMemperResponse).subscribe(
-        //   x => {
-        //     console.log("MarkBillAsVoid =>");
-        //     console.log(x);
-        //   }
-        // );
+        this.teamService.markBillAsVoid(this.getTeamMemperResponse).subscribe(
+          x => {
+            console.log("MarkBillAsVoid =>");
+            console.log(x);
+          }
+        );
 
 
 
@@ -130,12 +127,6 @@ export class AppComponent {
         console.log(this.team.player[0]);
       }
     }, 5000);
-  }
-  removeVideo() {
-    this.gameStage = GameStage.getPlayers;
-    // this.displayVideo = false;
-    // this.displayStartButton = true;
-    // this.numberOfPlayer = 1;
   }
   myFunction() {
     this.displayVideo = false;
@@ -184,12 +175,7 @@ export class AppComponent {
 
 
   getPlayers() {
-    this.gameStage = GameStage.SelectGameMode;
-
-
-
-
-    return;
+    // return;
     if (this.StartTheGame)
       return;
     this.teamService.getTeamMembers().subscribe(

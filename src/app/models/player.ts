@@ -15,3 +15,17 @@ export interface TopScore {
     score: number,
     name: string
 }
+export enum GameMode {
+    inTeam,
+    inWar
+}
+
+export enum GameStage {
+    playVideo,
+    getPlayers,
+    SelectGameMode,
+    TeamName,
+    CountDown,
+    Go
+}
+
