@@ -56,11 +56,11 @@ export class AppComponent {
 
   SelectGameMode(gameMode: GameMode) {
     this.gameMode = gameMode;
-    this.teamService.SelectGameMode(gameMode).subscribe(
-      e => {
-        this.gameStage = GameStage.TeamName;
-      }
-    );
+    // this.teamService.SelectGameMode(gameMode).subscribe(
+    //   e => {
+    //     this.gameStage = GameStage.TeamName;
+    //   }
+    // );
   }
 
 
