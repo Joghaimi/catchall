@@ -74,10 +74,7 @@ export class AppComponent {
     // this.showCountDown = true;
     setTimeout(() => {
       this.gameStage = GameStage.Go;
-      return;
-
-
-      this.showCountDown = false;
+      // this.showCountDown = false;
       if (this.team.player.length > 0) {
         let lastBillNumber = this.team.player[this.team.player.length - 1].billno
         this.team.player = this.team.player.filter(player => player.billno == lastBillNumber)
@@ -98,7 +95,7 @@ export class AppComponent {
           }
         );
         // this.numberOfPlayer = this.team.player.length;
-        this.numberOfPlayer = 2;
+        // this.numberOfPlayer = 2;
         // Send Teams To The Game 
         this.team.teamName = this.teamName;
         this.teamService.SendTeamMamber(this.team).subscribe(
@@ -113,9 +110,17 @@ export class AppComponent {
                       clearInterval(intervalId);
                       this.StartTheGame = false;
                       this.enableRestartTheGame = true;
-                      setTimeout(() => {
-                        window.location.reload();
-                      }, 20000);
+                      if (this.gameMode == GameMode.inTeam) {
+                        setTimeout(() => {
+                          window.location.reload();
+                        }, 20000);
+                      }else {
+                        setTimeout(() => {
+                          window.location.reload();
+                        }, 30000);
+                      }
+
+
 
                     }
                   }
