@@ -184,16 +184,14 @@ export class AppComponent {
 
 
   getPlayers() {
-    this.gameStage = GameStage.SelectGameMode;
-
-
-
-
-    return;
+    // this.gameStage = GameStage.SelectGameMode;
+    // return;
     if (this.StartTheGame)
       return;
     this.teamService.getTeamMembers().subscribe(
       e => {
+        this.gameStage = GameStage.SelectGameMode;
+
         this.hiddeBtn = true;
         this.team.player = e;
         if (this.team.player.length < 1) {
