@@ -58,7 +58,7 @@ export class AppComponent {
     this.gameMode = gameMode;
     // this.teamService.SelectGameMode(gameMode).subscribe(
     //   e => {
-    //     this.gameStage = GameStage.TeamName;
+        this.gameStage = GameStage.TeamName;
     //   }
     // );
   }
