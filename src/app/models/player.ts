@@ -4,6 +4,7 @@ export interface Player {
     firstname?: string,
     lastname?: string
     score?: number
+    winNumber:number
 }
 
 

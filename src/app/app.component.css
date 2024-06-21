@@ -132,3 +132,6 @@
   position: relative;
   top: .2em;
 }
+.checked {
+  color: orange;
+}

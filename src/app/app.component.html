@@ -41,8 +41,9 @@
         </div>
       </div>
 
-      <div class="row pt-5 align-items-center" *ngIf="GameStage.Go == gameStage" style="min-height: 100vh;">
-        <div class="col" *ngIf="numberOfPlayer>1">
+      <div class="row pt-5 align-items-center" *ngIf="GameStage.Go == gameStage && gameMode == GameMode.inTeam"
+        style="min-height: 100vh;">
+        <div class="col">
           <div class="row d-flex justify-content-center fw-bolder" style="font-size: 40px;color:#fff600">
             {{this.teamName}}
           </div>
@@ -53,13 +54,46 @@
             {{team.player[0]?.score}}
           </div>
         </div>
+      </div>
+      <div class="row pt-5 " *ngIf="GameStage.Go == gameStage && gameMode == GameMode.inWar" style="min-height: 60vh;">
+        <div class="col text-center" *ngIf="GameMode.inWar == gameMode">
+          <div class="row fw-bolder" style="font-size: 60px;">
+            <div class="col text-center">
+              <div style="color: #fff600;">
+                {{team.player[0]?.firstname +" " +team.player[0]?.lastname}}
+              </div>
+              <div style="color: #fff600;">
+                  Score : {{team.player[0]?.score}}
+              </div>
+              <div>
+                <br>
+                <br>
+                <span class="fa fa-star checked" *ngIf="team.player[0].winNumber>0"></span>
+                <span class="fa fa-star checked" *ngIf="team.player[0].winNumber>1"></span>
+                <span class="fa fa-star checked" *ngIf="team.player[0].winNumber>2"></span>
+         
+              </div>
+             
 
-        <div class="col" *ngIf="numberOfPlayer>2">
-          <div class="row d-flex justify-content-center fw-bolder" style="font-size: 40px;color:blue">
-            {{team.player[2]?.firstname +" " +team.player[2]?.lastname}}
-          </div>
-          <div class="row d-flex justify-content-center fw-bolder text-white" style="font-size: 40px;margin-top: 30%;">
-            {{team.player[2]?.score}}
+            </div>
+            <div class="col text-center" >
+              <div style="color: red;">
+                {{team.player[1]?.firstname +" " +team.player[1]?.lastname}}
+              </div>
+              <div style="color: red;">
+                Score : {{team.player[1]?.score}}
+              </div>
+              <div>
+                <br>
+                <br>
+
+                <span class="fa fa-star checked" *ngIf="team.player[1].winNumber>0"></span>
+                <span class="fa fa-star checked" *ngIf="team.player[1].winNumber>1"></span>
+                <span class="fa fa-star checked" *ngIf="team.player[1].winNumber>2"></span>
+         
+              </div>
+              
+            </div>
           </div>
         </div>
       </div>
@@ -68,8 +102,8 @@
         <div class="col d-flex align-items-center justify-content-center mt-1 text-white" style="min-height: 50vh;">
           <div class="text-center">
             <div>
-              <h1 class="fw-bolder" style="font-family: 'alarm clock', sans-serif; font-size: 95px;"
-                *ngIf="numberOfPlayer > 1">
+              <!-- *ngIf="numberOfPlayer > 1" -->
+              <h1 class="fw-bolder" style="font-family: 'alarm clock', sans-serif; font-size: 95px;">
                 {{this.gameTime | timeFormat}}
               </h1>
             </div>

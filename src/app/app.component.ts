@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class AppComponent {
 
-  gameMode: GameMode = GameMode.inTeam;
+  gameMode: GameMode = GameMode.inWar;
   gameStage: GameStage = GameStage.playVideo;
 
   public get GameStage(): typeof GameStage {
@@ -29,7 +29,12 @@ export class AppComponent {
   StartTheGame = false;
   enableRestartTheGame = false;
   hiddeBtn = false;
-  team: Team = { teamName: "", player: [] };
+  team: Team = {
+    teamName: "", player: [
+      // { firstname: "ahjm", lastname: "dai", score: 5, winNumber: 1 },
+      // { firstname: "ahjm", lastname: "dai", score: 5, winNumber: 3 },
+    ]
+  };
   numberOfPlayer = 0;
   player1 = "Player 1";
   player2 = "Player 2";
@@ -114,14 +119,11 @@ export class AppComponent {
                         setTimeout(() => {
                           window.location.reload();
                         }, 20000);
-                      }else {
+                      } else {
                         setTimeout(() => {
                           window.location.reload();
                         }, 30000);
                       }
-
-
-
                     }
                   }
                 );
