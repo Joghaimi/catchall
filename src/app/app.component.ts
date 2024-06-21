@@ -68,11 +68,15 @@ export class AppComponent {
   }
 
 
-
   SaveTeamName() {
-    this.showTeamNamming = false;
-    this.showCountDown = true;
+    this.gameStage = GameStage.CountDown;
+    // this.showTeamNamming = false;
+    // this.showCountDown = true;
     setTimeout(() => {
+      this.gameStage = GameStage.Go;
+      return;
+
+
       this.showCountDown = false;
       if (this.team.player.length > 0) {
         let lastBillNumber = this.team.player[this.team.player.length - 1].billno
