@@ -15,8 +15,8 @@
     ">
   <div class="background-overlay">
     <div class="container-fluid">
-      <div *ngIf="gameStage == GameStage.winner" class="pt-5 mt-5 align-items-center" style="min-height: 100vh;">
-        <app-winner [name]= "winnerPlayer"></app-winner>
+      <div *ngIf="gameStage == GameStage.winner && GameMode.inWar == gameMode" class="pt-5 mt-5 align-items-center" style="min-height: 100vh;">
+        <app-winner [name]="winnerPlayer"></app-winner>
       </div>
 
       <!-- Start Game btn -->

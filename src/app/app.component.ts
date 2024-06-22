@@ -57,21 +57,30 @@ export class AppComponent {
 
   SelectGameMode(gameMode: GameMode) {
     this.gameMode = gameMode;
-    if (this.gameMode == GameMode.inWar) {
-      this.gameTime = 180;
-      this.SaveTeamName();
+    // if (this.gameMode == GameMode.inWar) {
+    //   this.gameTime = 180;
+    //   this.SaveTeamName();
+    // }
+    // else {
+    //   this.gameTime = 120;
+    //   this.gameStage = GameStage.TeamName;
+    // }
 
-    }
-    else {
-      this.gameTime = 120;
-      this.gameStage = GameStage.TeamName;
 
-    }
+    this.teamService.SelectGameMode(gameMode).subscribe(
+      e => {
+        if (this.gameMode == GameMode.inWar) {
+          this.gameTime = 180;
+          this.SaveTeamName();
+        }
+        else {
+          this.gameTime = 120;
+          this.gameStage = GameStage.TeamName;
+        }
 
-    // this.teamService.SelectGameMode(gameMode).subscribe(
-    //   e => {
-    //   }
-    // );
+
+      }
+    );
   }
 
 
@@ -125,7 +134,7 @@ export class AppComponent {
                     this.gameTime = time;
                     if (this.gameTime == 0) {
 
-                      if (GameMode.inWar) {
+                      if (GameMode.inWar == this.gameMode) {
                         setTimeout(() => {
                           this.teamService.getTeamScore().subscribe(
                             score => {
