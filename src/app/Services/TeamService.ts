@@ -11,7 +11,8 @@ export class TeamService {
     constructor(private httpClient: HttpClient) { }
 
     SelectGameMode(gameMode: GameMode) {
-        return this.httpClient.post('http://catchy.local:5221/api/Catchy/GameMode', gameMode);
+
+        return this.httpClient.post('http://catchy.local:5221/api/Catchy/GameMode?mode=' + gameMode, gameMode);
     }
 
 
