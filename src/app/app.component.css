@@ -50,6 +50,9 @@
 .background-Image2{
   background-image: url('../assets/images/background2-01.png');
 }
+.background-Winner{
+  background-image: url('../assets/images/winner.jpg');
+}
 .background-Image3{
   background-image: url('../assets/images/background3-01.png');
 }

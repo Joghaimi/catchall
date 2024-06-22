@@ -27,6 +27,7 @@ export enum GameStage {
     SelectGameMode,
     TeamName,
     CountDown,
-    Go
+    Go,
+    winner
 }
 

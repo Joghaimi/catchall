@@ -36,6 +36,7 @@ export class AppComponent {
     ]
   };
   numberOfPlayer = 0;
+  winnerPlayer = "Draw";
   player1 = "Player 1";
   player2 = "Player 2";
   player3 = "Player 3";
@@ -123,6 +124,27 @@ export class AppComponent {
                   time => {
                     this.gameTime = time;
                     if (this.gameTime == 0) {
+
+                      if (GameMode.inWar) {
+                        setInterval(() => {
+                          this.teamService.getTeamScore().subscribe(
+                            score => {
+                              if (score != null)
+                                this.team = score;
+
+                              if (this.team.player[0].winNumber > this.team.player[1].winNumber)
+                                this.winnerPlayer = this.team.player[0].firstname + " " + this.team.player[0].lastname
+                              else if (this.team.player[0].winNumber < this.team.player[1].winNumber)
+                                this.winnerPlayer = this.team.player[1].firstname + " " + this.team.player[1].lastname
+                              else
+                                this.winnerPlayer = "draw"
+                            }
+                          )
+                        }, 2000)
+                      }
+
+
+
                       this.enableRestartTheGame = true;
                       if (this.gameMode == GameMode.inTeam) {
                         setTimeout(() => {

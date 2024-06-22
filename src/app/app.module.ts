@@ -8,6 +8,7 @@ import { TimeFormatPipe } from './time-format.pipe';
 import { CountdownComponent } from './countdown/countdown.component';
 import { MultiplayersComponent } from './modules/multiplayers/multiplayers.component';
 import { TestKeyboardComponent } from './test-keyboard/test-keyboard.component';
+import { WinnerComponent } from './winner/winner.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { TestKeyboardComponent } from './test-keyboard/test-keyboard.component';
     TimeFormatPipe,
     CountdownComponent,
     MultiplayersComponent,
-    TestKeyboardComponent
+    TestKeyboardComponent,
+    WinnerComponent
   ],
   imports: [
     BrowserModule,

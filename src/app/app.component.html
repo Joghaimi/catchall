@@ -9,9 +9,15 @@
 
 
 <div class="background-container background-Image1" [ngClass]="{
-    'background-Image2': GameMode.inWar == gameMode && GameStage.Go == gameStage}">
+      'background-Image2': GameMode.inWar == gameMode && GameStage.Go == gameStage,
+      'background-Winner' : GameMode.inWar == gameMode && GameStage.winner == gameStage
+    }
+    ">
   <div class="background-overlay">
     <div class="container-fluid">
+      <div *ngIf="gameStage == GameStage.winner" class="pt-5 mt-5 align-items-center" style="min-height: 100vh;">
+        <app-winner [name]= "winnerPlayer"></app-winner>
+      </div>
 
       <!-- Start Game btn -->
       <div class="row pt-5 align-items-center" style="min-height: 100vh;" *ngIf="gameStage == GameStage.getPlayers">
@@ -63,7 +69,7 @@
                 {{team.player[0]?.firstname +" " +team.player[0]?.lastname}}
               </div>
               <div style="color: #fff600;">
-                  Score : {{team.player[0]?.score}}
+                Score : {{team.player[0]?.score}}
               </div>
               <div>
                 <br>
@@ -71,12 +77,12 @@
                 <span class="fa fa-star checked" *ngIf="team.player[0].winNumber>0"></span>
                 <span class="fa fa-star checked" *ngIf="team.player[0].winNumber>1"></span>
                 <span class="fa fa-star checked" *ngIf="team.player[0].winNumber>2"></span>
-         
+
               </div>
-             
+
 
             </div>
-            <div class="col text-center" >
+            <div class="col text-center">
               <div style="color: red;">
                 {{team.player[1]?.firstname +" " +team.player[1]?.lastname}}
               </div>
@@ -90,9 +96,9 @@
                 <span class="fa fa-star checked" *ngIf="team.player[1].winNumber>0"></span>
                 <span class="fa fa-star checked" *ngIf="team.player[1].winNumber>1"></span>
                 <span class="fa fa-star checked" *ngIf="team.player[1].winNumber>2"></span>
-         
+
               </div>
-              
+
             </div>
           </div>
         </div>
