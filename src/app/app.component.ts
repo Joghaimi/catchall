@@ -126,7 +126,7 @@ export class AppComponent {
                     if (this.gameTime == 0) {
 
                       if (GameMode.inWar) {
-                        setInterval(() => {
+                        setTimeout(() => {
                           this.teamService.getTeamScore().subscribe(
                             score => {
                               if (score != null)
@@ -138,6 +138,7 @@ export class AppComponent {
                                 this.winnerPlayer = this.team.player[1].firstname + " " + this.team.player[1].lastname
                               else
                                 this.winnerPlayer = "draw"
+                              this.gameStage = GameStage.winner;
                             }
                           )
                         }, 2000)
