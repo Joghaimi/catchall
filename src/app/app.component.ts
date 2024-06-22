@@ -56,13 +56,19 @@ export class AppComponent {
 
   SelectGameMode(gameMode: GameMode) {
     this.gameMode = gameMode;
-    if (this.gameMode == GameMode.inWar)
+    if (this.gameMode == GameMode.inWar) {
       this.gameTime = 180;
-    else
+      this.SaveTeamName();
+
+    }
+    else {
       this.gameTime = 120;
+      this.gameStage = GameStage.TeamName;
+
+    }
+
     // this.teamService.SelectGameMode(gameMode).subscribe(
     //   e => {
-    this.gameStage = GameStage.TeamName;
     //   }
     // );
   }
@@ -75,6 +81,7 @@ export class AppComponent {
       }
     );
   }
+
 
 
   SaveTeamName() {
@@ -116,17 +123,16 @@ export class AppComponent {
                   time => {
                     this.gameTime = time;
                     if (this.gameTime == 0) {
-                     
-                      this.StartTheGame = false;
                       this.enableRestartTheGame = true;
-                      
                       if (this.gameMode == GameMode.inTeam) {
                         setTimeout(() => {
+                          this.StartTheGame = false;
                           clearInterval(intervalId);
                           window.location.reload();
                         }, 20000);
                       } else {
                         setTimeout(() => {
+                          this.StartTheGame = false;
                           clearInterval(intervalId);
                           window.location.reload();
                         }, 30000);
