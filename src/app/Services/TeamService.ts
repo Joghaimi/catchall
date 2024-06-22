@@ -12,7 +12,7 @@ export class TeamService {
 
     SelectGameMode(gameMode: GameMode) {
 
-        return this.httpClient.post('http://catchy.local:5221/api/Catchy/GameMode?mode=' + gameMode, gameMode);
+        return this.httpClient.post('http://catchy.local:5221/api/Catchy/GameMode?mode=' + gameMode.toString(), gameMode);
     }
 
 
