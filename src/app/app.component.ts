@@ -116,15 +116,18 @@ export class AppComponent {
                   time => {
                     this.gameTime = time;
                     if (this.gameTime == 0) {
-                      clearInterval(intervalId);
+                     
                       this.StartTheGame = false;
                       this.enableRestartTheGame = true;
+                      
                       if (this.gameMode == GameMode.inTeam) {
                         setTimeout(() => {
+                          clearInterval(intervalId);
                           window.location.reload();
                         }, 20000);
                       } else {
                         setTimeout(() => {
+                          clearInterval(intervalId);
                           window.location.reload();
                         }, 30000);
                       }
