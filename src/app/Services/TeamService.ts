@@ -11,10 +11,8 @@ export class TeamService {
     constructor(private httpClient: HttpClient) { }
 
     SelectGameMode(gameMode: GameMode) {
-        if (gameMode == GameMode.inTeam)
-            return this.httpClient.post('http://catchy.local:5221/api/Catchy/GameMode?mode=inTeam', gameMode);
-        else
-            return this.httpClient.post('http://catchy.local:5221/api/Catchy/GameMode?mode=inWar', gameMode);
+
+        return this.httpClient.post('http://catchy.local:5221/api/Catchy/GameMode?mode=' + gameMode, gameMode);
     }
 
 
