@@ -56,9 +56,13 @@ export class AppComponent {
 
   SelectGameMode(gameMode: GameMode) {
     this.gameMode = gameMode;
+    if (this.gameMode == GameMode.inWar)
+      this.gameTime = 180;
+    else
+      this.gameTime = 120;
     // this.teamService.SelectGameMode(gameMode).subscribe(
     //   e => {
-        this.gameStage = GameStage.TeamName;
+    this.gameStage = GameStage.TeamName;
     //   }
     // );
   }
