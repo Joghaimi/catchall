@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 export class AppComponent {
 
   gameMode: GameMode = GameMode.inWar;
+  // gameStage: GameStage = GameStage.SelectGameMode;
   gameStage: GameStage = GameStage.playVideo;
 
   public get GameStage(): typeof GameStage {
