@@ -77,16 +77,16 @@ export class AppComponent {
     let intervalId = setInterval(() => {
       // this.statment+=this.statment;
       if (this.numberOfIteration == 0)
-        this.statment = "Top Team This Month is " + thisMonthTopScore.teamName + " Score is " + thisMonthTopScore.TeamScore
+        this.statment = "Top Team This Month is " + thisMonthTopScore.teamName + " Score is " + thisMonthTopScore.teamScore
       else if (this.numberOfIteration == 1)
-        this.statment = "Top Team This Week is " + thisWeekTopScore.teamName + " Score is " + thisWeekTopScore.TeamScore
+        this.statment = "Top Team This Week is " + thisWeekTopScore.teamName + " Score is " + thisWeekTopScore.teamScore
       else
-        this.statment = "Top Team today is " + todayTopScore.teamName + " Score is " + todayTopScore.TeamScore
+        this.statment = "Top Team today is " + todayTopScore.teamName + " Score is " + todayTopScore.teamScore
       this.numberOfIteration++;
       if (this.numberOfIteration > 2)
         this.numberOfIteration = 0;
 
-    }, 2000);
+    }, 3000);
 
   }
   SelectGameMode(gameMode: GameMode) {

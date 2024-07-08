@@ -33,5 +33,5 @@ export enum GameStage {
 export interface Score {
     id?: string,
     teamName?: string,
-    TeamScore?: number
+    teamScore?: number
 }
