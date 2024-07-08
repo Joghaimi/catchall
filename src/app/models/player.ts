@@ -30,4 +30,8 @@ export enum GameStage {
     Go,
     winner
 }
-
+export interface Score {
+    id?: string,
+    teamName?: string,
+    TeamScore?: number
+}

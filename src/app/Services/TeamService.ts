@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { GameMode, Player, Team, TopScore } from '../models/player';
+import { GameMode, Player, Score, Team, TopScore } from '../models/player';
 
 @Injectable({
     providedIn: 'root'
@@ -24,6 +24,17 @@ export class TeamService {
     TopScore() {
         return this.httpClient.get<TopScore>('http://catchy.local:5221/api/Catchy/TopScore');
     }
+    ThisMonthTopScore() {
+        return this.httpClient.get<Score>('http://catchy.local:5221/api/Catchy/GetThisMonthTopScore');
+    }
+    ThisWeekTopScore() {
+        return this.httpClient.get<Score>('http://catchy.local:5221/api/Catchy/GetThisWeekTopScore');
+    }
+    ThisDayThopScore() {
+        return this.httpClient.get<Score>('http://catchy.local:5221/api/Catchy/GetThisMonthTopScore');
+    }
+
+
 
     RoomTime() {
         return this.httpClient.get<number>('http://catchy.local:5221/api/Catchy/CurrentTime');

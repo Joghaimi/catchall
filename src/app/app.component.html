@@ -2,8 +2,8 @@
 </div>
 
 <!-- The video -->
-<video id="video" class="button-container" style="width: 100vh" id="myVideo" *ngIf="gameStage == GameStage.playVideo"
-  (click)="removeVideo();myFunction()" autoplay muted loop>
+<video id="video" class="button-container" style="width: 100vh" id="myVideo"
+  *ngIf="gameStage == GameStage.playVideo && videoOrTopScore" (click)="removeVideo();myFunction()" autoplay muted loop>
   <source src="../assets/video/Introduction.mp4" type="video/mp4">
 </video>
 
@@ -20,30 +20,44 @@
         <app-winner [name]="winnerPlayer"></app-winner>
       </div>
 
+
+      <div class="row pt-5 align-items-center" style="min-height: 100vh;"
+        *ngIf="gameStage == GameStage.playVideo && !videoOrTopScore">
+        <div class="col-2"></div>
+        <div class="col-8 align-items-center button-container btn font-weight-bold px-5 py-5" style="
+            padding: 90Vh;
+            font-size: 95px;
+            color: #ffff;">
+          {{statment}}
+        </div>
+        <div class="col-2"></div>
+
+      </div>
       <!-- Start Game btn -->
       <div class="row pt-5 align-items-center" style="min-height: 100vh;" *ngIf="gameStage == GameStage.getPlayers">
         <div class="col-2"></div>
         <button class="col-8 align-items-center button-container start-btn btn font-weight-bold px-5 py-5" style="
-            margin-top: 20Vh;
+            margin-top: 27Vh;
             padding: 90Vh;
-            font-size: 70px;
+            font-size: 95px;
           " (click)="getPlayers()">
-          Start
+          START
         </button>
         <div class="col-2">
         </div>
       </div>
 
+
+
+
       <!-- Select Game mode -->
       <div class="row pt-5 align-items-center" style="min-height: 100vh;" *ngIf="gameStage == GameStage.SelectGameMode">
-        <div class="card text-white bg-primary col-12 p-5" style="cursor: pointer;"
-          (click)="SelectGameMode(GameMode.inTeam)">
+        <div class="card team col-10 p-5" style="cursor: pointer;" (click)="SelectGameMode(GameMode.inTeam)">
           <div class="card-body">
             <p class="card-text text-center" style="font-size: 80px;">Team</p>
           </div>
         </div>
-        <div class="card text-white bg-danger mb-1 col-12 p-5" style="cursor: pointer;"
-          (click)="SelectGameMode(GameMode.inWar)">
+        <div class="card war mb-1 col-10 p-5" style="cursor: pointer;" (click)="SelectGameMode(GameMode.inWar)">
           <div class="card-body">
             <p class="card-text text-center" style="font-size: 80px;">War</p>
           </div>
@@ -68,37 +82,37 @@
         <div class="col text-center" *ngIf="GameMode.inWar == gameMode">
           <div class="row fw-bolder" style="font-size: 60px;">
             <div class="col text-center">
-              <div style="color: #fff600;">
+              <div style="color: white;">
                 {{team.player[0]?.firstname +" " +team.player[0]?.lastname}}
               </div>
-              <div style="color: #fff600;">
+              <div style="color: white;">
                 Score : {{team.player[0]?.score}}
               </div>
               <div>
                 <br>
                 <br>
-                <span class="fa fa-star checked" *ngIf="team.player[0].winNumber>0"></span>
-                <span class="fa fa-star checked" *ngIf="team.player[0].winNumber>1"></span>
-                <span class="fa fa-star checked" *ngIf="team.player[0].winNumber>2"></span>
+                <span class="fa fa-star checked" style="color: white;" *ngIf="team.player[0].winNumber>0"></span>
+                <span class="fa fa-star checked" style="color: white;" *ngIf="team.player[0].winNumber>1"></span>
+                <span class="fa fa-star checked" style="color: white;" *ngIf="team.player[0].winNumber>2"></span>
 
               </div>
 
 
             </div>
             <div class="col text-center">
-              <div style="color: red;">
+              <div style="color: white;">
                 {{team.player[1]?.firstname +" " +team.player[1]?.lastname}}
               </div>
-              <div style="color: red;">
+              <div style="color: white;">
                 Score : {{team.player[1]?.score}}
               </div>
               <div>
                 <br>
                 <br>
 
-                <span class="fa fa-star checked" *ngIf="team.player[1].winNumber>0"></span>
-                <span class="fa fa-star checked" *ngIf="team.player[1].winNumber>1"></span>
-                <span class="fa fa-star checked" *ngIf="team.player[1].winNumber>2"></span>
+                <span class="fa fa-star checked" style="color: white;" *ngIf="team.player[1].winNumber>0"></span>
+                <span class="fa fa-star checked" style="color: white;" *ngIf="team.player[1].winNumber>1"></span>
+                <span class="fa fa-star checked" style="color: white;" *ngIf="team.player[1].winNumber>2"></span>
 
               </div>
 

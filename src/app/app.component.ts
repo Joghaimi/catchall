@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TeamService } from './Services/TeamService';
-import { GameMode, GameStage, Team, TopScore } from './models/player';
+import { GameMode, GameStage, Score, Team, TopScore } from './models/player';
 import Keyboard from "simple-keyboard";
 import { FormsModule } from '@angular/forms';
 
@@ -30,6 +30,8 @@ export class AppComponent {
   StartTheGame = false;
   enableRestartTheGame = false;
   hiddeBtn = false;
+  numberOfIteration = 0;
+  statment = "Hi Player !";
   team: Team = {
     teamName: "", player: [
       // { firstname: "ahjm", lastname: "dai", score: 5, winNumber: 1 },
@@ -47,15 +49,46 @@ export class AppComponent {
   teamName = "";
   keyboard!: Keyboard;
   getTeamMemperResponse: any;
+  videoOrTopScore = false;
   /**
    *
    */
   constructor(private teamService: TeamService) {
+    // this.videoOrTopScore = Math.random() >= 0.5;
+    if (!this.videoOrTopScore)
+      this.getTopScoreAndDisplayIt();
   }
   ngOnInit() {
     this.getTopScorePlayer();
   }
+  getTopScoreAndDisplayIt() {
+    let todayTopScore: Score;
+    let thisWeekTopScore: Score;
+    let thisMonthTopScore: Score;
+    this.teamService.ThisDayThopScore().subscribe(e => {
+      todayTopScore = e;
+    });
+    this.teamService.ThisWeekTopScore().subscribe(e => {
+      thisWeekTopScore = e;
+    });
+    this.teamService.ThisMonthTopScore().subscribe(e => {
+      thisMonthTopScore = e;
+    });
+    let intervalId = setInterval(() => {
+      // this.statment+=this.statment;
+      if (this.numberOfIteration == 0)
+        this.statment = "Top Team This Month is " + thisMonthTopScore.teamName + " Score is " + thisMonthTopScore.TeamScore
+      else if (this.numberOfIteration == 1)
+        this.statment = "Top Team This Week is " + thisWeekTopScore.teamName + " Score is " + thisWeekTopScore.TeamScore
+      else
+        this.statment = "Top Team today is " + todayTopScore.teamName + " Score is " + todayTopScore.TeamScore
+      this.numberOfIteration++;
+      if (this.numberOfIteration > 2)
+        this.numberOfIteration = 0;
 
+    }, 2000);
+
+  }
   SelectGameMode(gameMode: GameMode) {
     this.gameMode = gameMode;
     // if (this.gameMode == GameMode.inWar) {

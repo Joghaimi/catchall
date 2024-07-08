@@ -45,7 +45,7 @@
   position: relative;
 }
 .background-Image1{
-  background-image: url('../assets/images/background-01.jpg');
+  background-image: url('../assets/images/background-01.jfif');
 }
 .background-Image2{
   background-image: url('../assets/images/background2-01.png');
@@ -116,17 +116,41 @@
   margin: 5px;
   font-weight: bold;
   padding: 10px 0 10px 10px;
-  background-color: lightgray;
-  text-shadow: -1px -1px black, 1px 1px white;
-  color: gray;
-  -webkit-border-radius: 7px;
-  -moz-border-radius: 7px;
-  -o-border-radius: 7px;
-  border-radius: 7px;
-  box-shadow: 0 .2em gray;
+  background-color: #f30408;
+  text-shadow: -10px -1px black, 1px 1px black;
+  color: white;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -o-border-radius: 50px;
+  border-radius: 50px;
+  box-shadow: 0 0.1em black;
   cursor: pointer;
   font-size: 25px;
 
+}
+
+.team{
+  background-color: #fad501;
+  text-shadow: -5px 0px black, 1px 1px black;
+  color: white;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -o-border-radius: 50px;
+  border-radius: 50px;
+  box-shadow: 0 0.3em black;
+  margin-left: 100px;
+}
+
+.war{
+  background-color: #f30408;
+  text-shadow: -5px 0px black, 1px 1px black;
+  color: white;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -o-border-radius: 50px;
+  border-radius: 50px;
+  box-shadow: 0 0.3em black;
+  margin-left: 100px;
 }
 
 .video-game-button:active,
