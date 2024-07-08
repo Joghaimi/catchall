@@ -74,25 +74,21 @@ export class AppComponent {
     this.teamService.ThisMonthTopScore().subscribe(e => {
       thisMonthTopScore = e;
     });
-
+    let intervalId = setInterval(() => {
+      console.log("test");
+      // this.statment+=this.statment;
+      if (this.numberOfIteration == 0)
+        this.statment = "Top Team This Month is " + thisMonthTopScore.teamName + " Score is " + thisMonthTopScore.teamScore
+      else if (this.numberOfIteration == 1)
+        this.statment = "Top Team This Week is " + thisWeekTopScore.teamName + " Score is " + thisWeekTopScore.teamScore
+      else
+        this.statment = "Top Team today is " + todayTopScore.teamName + " Score is " + todayTopScore.teamScore
+      this.numberOfIteration++;
+      if (this.numberOfIteration > 2)
+        this.numberOfIteration = 0;
+    }, 3000);
     let biggerInterval = setInterval(() => {
-      if (!this.videoOrTopScore) {
-        let intervalId = setInterval(() => {
-          // this.statment+=this.statment;
-          if (this.numberOfIteration == 0)
-            this.statment = "Top Team This Month is " + thisMonthTopScore.teamName + " Score is " + thisMonthTopScore.teamScore
-          else if (this.numberOfIteration == 1)
-            this.statment = "Top Team This Week is " + thisWeekTopScore.teamName + " Score is " + thisWeekTopScore.teamScore
-          else
-            this.statment = "Top Team today is " + todayTopScore.teamName + " Score is " + todayTopScore.teamScore
-          this.numberOfIteration++;
-          if (this.numberOfIteration > 2)
-            this.numberOfIteration = 0;
-
-        }, 3000);
-      }
       this.videoOrTopScore = !this.videoOrTopScore;
-
     }, 60000)
 
 
