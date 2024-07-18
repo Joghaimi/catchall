@@ -36,13 +36,13 @@ export class TeamService {
 
 
     ThisDayTopThreeScore() {
-        return this.httpClient.get<Score[]>('https://localhost:7083/api/Catchy/GetTodayTopThreeScore');
+        return this.httpClient.get<Score[]>('http://catchy.local:5221/api/Catchy/GetTodayTopThreeScore');
     }
     ThisMonthTopThreeScore() {
-        return this.httpClient.get<Score[]>('https://localhost:7083/api/Catchy/GetThisMonthTopThreeScore');
+        return this.httpClient.get<Score[]>('http://catchy.local:5221/api/Catchy/GetThisMonthTopThreeScore');
     }
     ThisWeekTopThreeScore() {
-        return this.httpClient.get<Score[]>('https://localhost:7083/api/Catchy/GetThisWeekThreeScore');
+        return this.httpClient.get<Score[]>('http://catchy.local:5221/api/Catchy/GetThisWeekThreeScore');
     }
 
 
