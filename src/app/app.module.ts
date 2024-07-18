@@ -9,6 +9,7 @@ import { CountdownComponent } from './countdown/countdown.component';
 import { MultiplayersComponent } from './modules/multiplayers/multiplayers.component';
 import { TestKeyboardComponent } from './test-keyboard/test-keyboard.component';
 import { WinnerComponent } from './winner/winner.component';
+import { ScoreCardComponent } from './component/score-card/score-card.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { WinnerComponent } from './winner/winner.component';
     CountdownComponent,
     MultiplayersComponent,
     TestKeyboardComponent,
-    WinnerComponent
+    WinnerComponent,
+    ScoreCardComponent
   ],
   imports: [
     BrowserModule,

@@ -4,7 +4,7 @@ export interface Player {
     firstname?: string,
     lastname?: string
     score?: number
-    winNumber:number
+    winNumber: number
 }
 
 
@@ -20,7 +20,11 @@ export enum GameMode {
     inTeam,
     inWar
 }
-
+export enum ShowTopScore {
+    today,
+    week,
+    month
+}
 export enum GameStage {
     playVideo,
     getPlayers,

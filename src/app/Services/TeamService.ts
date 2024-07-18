@@ -35,6 +35,16 @@ export class TeamService {
     }
 
 
+    ThisDayTopThreeScore() {
+        return this.httpClient.get<Score[]>('https://localhost:7083/api/Catchy/GetTodayTopThreeScore');
+    }
+    ThisMonthTopThreeScore() {
+        return this.httpClient.get<Score[]>('https://localhost:7083/api/Catchy/GetThisMonthTopThreeScore');
+    }
+    ThisWeekTopThreeScore() {
+        return this.httpClient.get<Score[]>('https://localhost:7083/api/Catchy/GetThisWeekThreeScore');
+    }
+
 
     RoomTime() {
         return this.httpClient.get<number>('http://catchy.local:5221/api/Catchy/CurrentTime');

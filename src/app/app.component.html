@@ -7,8 +7,18 @@
   <source src="../assets/video/Introduction.mp4" type="video/mp4">
 </video>
 
+<div class="background-video">
+  <video id="bg-video">
+    <source src="../assets/video/background-01.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="content">
+    <h1>Welcome to Our Website</h1>
+    <p>Your content goes here...</p>
+  </div>
+</div>
 
-<div class="background-container background-Image1" [ngClass]="{
+<div class="background-container background-Image1" *ngIf="false" [ngClass]="{
       'background-Image2': GameMode.inWar == gameMode && GameStage.Go == gameStage,
       'background-Winner' : GameMode.inWar == gameMode && GameStage.winner == gameStage
     }
@@ -23,8 +33,76 @@
 
       <div class="row pt-5 align-items-center" style="min-height: 100vh;" (click)="removeVideo();myFunction()"
         *ngIf="gameStage == GameStage.playVideo && !videoOrTopScore">
-        <div class="col-2"></div>
-        <div
+        <div class="row d-flex justify-content-center fw-bolder text-white" style="font-size: 60px;"
+          *ngIf="showTopScore == ShowTopScore.today">
+          Today Top Teams
+        </div>
+        <div class="row d-flex justify-content-center fw-bolder text-white" style="font-size: 60px;"
+          *ngIf="showTopScore == ShowTopScore.week">
+          This Week Top Teams
+        </div>
+        <div class="row d-flex justify-content-center fw-bolder text-white" style="font-size: 60px;"
+          *ngIf="showTopScore == ShowTopScore.month">
+          This Month Top Teams
+        </div>
+        <div class="col-1"></div>
+        <div class="col-10">
+          <!-- Today Top Score -->
+          <div class="row" *ngIf="showTopScore == ShowTopScore.today">
+            <div class="col-4 mt-5">
+              <app-score-card [Score]="todayTopThreeScore[1].teamScore" [TeamName]="todayTopThreeScore[1].teamName"
+                [Order]="2" *ngIf="todayTopThreeScore.length>1"></app-score-card>
+            </div>
+            <div class="col-4">
+              <app-score-card [Order]="1" [Score]="todayTopThreeScore[0].teamScore"
+                [TeamName]="todayTopThreeScore[0].teamName" *ngIf="todayTopThreeScore.length>0"></app-score-card>
+            </div>
+            <div class="col-4 mt-5">
+              <app-score-card [Order]="3" [Score]="todayTopThreeScore[2].teamScore"
+                [TeamName]="todayTopThreeScore[2].teamName" *ngIf="todayTopThreeScore.length>2"></app-score-card>
+            </div>
+          </div>
+          <!-- This Week Top Score -->
+          <div class="row" *ngIf="showTopScore == ShowTopScore.week">
+            <div class="col-4 mt-5">
+              <app-score-card [Score]="thisWeekTopThreeScore[1].teamScore"
+                [TeamName]="thisWeekTopThreeScore[1].teamName" [Order]="2"
+                *ngIf="thisWeekTopThreeScore.length>1"></app-score-card>
+            </div>
+            <div class="col-4">
+              <app-score-card [Order]="1" [Score]="thisWeekTopThreeScore[0].teamScore"
+                [TeamName]="thisWeekTopThreeScore[0].teamName" *ngIf="thisWeekTopThreeScore.length>0"></app-score-card>
+            </div>
+            <div class="col-4 mt-5">
+              <app-score-card [Order]="3" [Score]="thisWeekTopThreeScore[2].teamScore"
+                [TeamName]="thisWeekTopThreeScore[2].teamName" *ngIf="thisWeekTopThreeScore.length>2"></app-score-card>
+            </div>
+          </div>
+          <!-- This Mont Top Score -->
+
+          <div class="row" *ngIf="showTopScore == ShowTopScore.month">
+            <div class="col-4 mt-5">
+              <app-score-card [Score]="thisMonthTopThreeScore[1].teamScore"
+                [TeamName]="thisMonthTopThreeScore[1].teamName" [Order]="2"
+                *ngIf="thisMonthTopThreeScore.length>1"></app-score-card>
+            </div>
+            <div class="col-4">
+              <app-score-card [Order]="1" [Score]="thisMonthTopThreeScore[0].teamScore"
+                [TeamName]="thisMonthTopThreeScore[0].teamName"
+                *ngIf="thisMonthTopThreeScore.length>0"></app-score-card>
+            </div>
+            <div class="col-4 mt-5">
+              <app-score-card [Order]="3" [Score]="thisMonthTopThreeScore[2].teamScore"
+                [TeamName]="thisMonthTopThreeScore[2].teamName"
+                *ngIf="thisMonthTopThreeScore.length>2"></app-score-card>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-1"></div>
+
+        <!-- <div
           class="col-8 align-items-center button-container start-btn btn button-container btn font-weight-bold px-5 py-5"
           style="
            padding: 90Vh;
@@ -32,8 +110,7 @@
             font-size: 95px;
             color: #ffff;">
           {{statment}}
-        </div>
-        <div class="col-2"></div>
+        </div> -->
 
       </div>
       <!-- Start Game btn -->

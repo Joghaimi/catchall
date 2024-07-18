@@ -44,6 +44,35 @@
   background-repeat: no-repeat;
   position: relative;
 }
+
+
+.background-video {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  overflow: hidden;
+}
+
+#bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  color: white; /* Ensure text is visible over the video */
+  text-align: center;
+  padding: 20px;
+}
+
+
 .background-Image1{
   background-image: url('../assets/images/background-01.jfif');
 }

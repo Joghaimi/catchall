@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TeamService } from './Services/TeamService';
-import { GameMode, GameStage, Score, Team, TopScore } from './models/player';
+import { GameMode, GameStage, Score, ShowTopScore, Team, TopScore } from './models/player';
 import Keyboard from "simple-keyboard";
 import { FormsModule } from '@angular/forms';
 
@@ -12,14 +12,16 @@ import { FormsModule } from '@angular/forms';
 export class AppComponent {
 
   gameMode: GameMode = GameMode.inWar;
-  // gameStage: GameStage = GameStage.SelectGameMode;
   gameStage: GameStage = GameStage.playVideo;
-
+  showTopScore: ShowTopScore = ShowTopScore.today;
   public get GameStage(): typeof GameStage {
     return GameStage;
   }
   public get GameMode(): typeof GameMode {
     return GameMode;
+  }
+  public get ShowTopScore(): typeof ShowTopScore {
+    return ShowTopScore;
   }
 
   title = 'catchall';
@@ -50,12 +52,14 @@ export class AppComponent {
   keyboard!: Keyboard;
   getTeamMemperResponse: any;
   videoOrTopScore = false;
-  /**
-   *
-   */
+
+
+  todayTopThreeScore: Score[] = [];
+  thisWeekTopThreeScore: Score[] = [];
+  thisMonthTopThreeScore: Score[] = [];
+
+
   constructor(private teamService: TeamService) {
-    // this.videoOrTopScore = Math.random() >= 0.5;
-    // if (!this.videoOrTopScore)
     this.getTopScoreAndDisplayIt();
   }
   ngOnInit() {
@@ -65,33 +69,36 @@ export class AppComponent {
     let todayTopScore: Score;
     let thisWeekTopScore: Score;
     let thisMonthTopScore: Score;
-    this.teamService.ThisDayThopScore().subscribe(e => {
-      todayTopScore = e;
+
+    this.teamService.ThisDayTopThreeScore().subscribe(e => {
+      this.todayTopThreeScore = e;
+      console.log(this.todayTopThreeScore);
     });
-    this.teamService.ThisWeekTopScore().subscribe(e => {
-      thisWeekTopScore = e;
+
+    this.teamService.ThisWeekTopThreeScore().subscribe(e => {
+      this.thisWeekTopThreeScore = e;
+      console.log(this.thisWeekTopThreeScore);
     });
-    this.teamService.ThisMonthTopScore().subscribe(e => {
-      thisMonthTopScore = e;
+    this.teamService.ThisMonthTopThreeScore().subscribe(e => {
+      this.thisMonthTopThreeScore = e;
+      console.log(this.thisMonthTopThreeScore);
     });
     let intervalId = setInterval(() => {
-      console.log("test");
-      // this.statment+=this.statment;
-      if (this.numberOfIteration == 0)
-        this.statment = "Top Team This Month is " + thisMonthTopScore.teamName + " Score is " + thisMonthTopScore.teamScore
-      else if (this.numberOfIteration == 1)
-        this.statment = "Top Team This Week is " + thisWeekTopScore.teamName + " Score is " + thisWeekTopScore.teamScore
-      else
-        this.statment = "Top Team today is " + todayTopScore.teamName + " Score is " + todayTopScore.teamScore
-      this.numberOfIteration++;
-      if (this.numberOfIteration > 2)
-        this.numberOfIteration = 0;
-    }, 3000);
+      this.showTopScore = this.getNextShowTopScore(this.showTopScore);
+    }, 8000);
     let biggerInterval = setInterval(() => {
       this.videoOrTopScore = !this.videoOrTopScore;
     }, 60000)
 
 
+  }
+
+
+  getNextShowTopScore(current: ShowTopScore): ShowTopScore {
+    const enumValues = Object.values(ShowTopScore).filter(value => typeof value === 'number') as ShowTopScore[];
+    const currentIndex = enumValues.indexOf(current);
+    const nextIndex = (currentIndex + 1) % enumValues.length;
+    return enumValues[nextIndex];
   }
   SelectGameMode(gameMode: GameMode) {
     this.gameMode = gameMode;
@@ -134,8 +141,6 @@ export class AppComponent {
 
   SaveTeamName() {
     this.gameStage = GameStage.CountDown;
-    // this.showTeamNamming = false;
-    // this.showCountDown = true;
     setTimeout(() => {
       this.gameStage = GameStage.Go;
       // this.showCountDown = false;

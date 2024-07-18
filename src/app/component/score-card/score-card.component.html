@@ -1,0 +1,21 @@
+<div class="i-amphtml-story-reaction-results-category" [ngClass]="{
+    'i-amphtml-story-reaction-results-category': Order == 1,
+    'i-amphtml-story-reaction-results-category-1': Order == 2,
+    'i-amphtml-story-reaction-results-category-2': Order == 3
+  }" play-anim>
+    <div class=" i-amphtml-story-reaction-results-top">
+        <div class="i-amphtml-story-reaction-results-top-score">SCORE</div>
+        <div class="i-amphtml-story-reaction-results-top-line"></div>
+        <div class="i-amphtml-story-reaction-results-top-value">{{Score}}</div>
+    </div>
+    <div class="i-amphtml-story-reaction-results-visuals">
+        <div class="i-amphtml-story-reaction-results-dots" left></div>
+        <div class="i-amphtml-story-reaction-results-image">
+            <div class="i-amphtml-story-reaction-results-category-image"></div>
+        </div>
+        <div class="i-amphtml-story-reaction-results-dots" right></div>
+    </div>
+    <div class="i-amphtml-story-reaction-results-prompt">Team Name</div>
+    <div class="i-amphtml-story-reaction-results-category-text">{{TeamName}}</div>
+    <div class="i-amphtml-story-reaction-results-category-description">{{Date}}</div>
+</div>
