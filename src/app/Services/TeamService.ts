@@ -9,8 +9,8 @@ import { GameMode, Player, Score, Team, TopScore } from '../models/player';
 export class TeamService {
 
     constructor(private httpClient: HttpClient) { }
-    // url = "http://catchy.local";
-    url = "http://localhost";
+    url = "http://catchy.local";
+    // url = "http://localhost";
     SelectGameMode(gameMode: GameMode) {
         if (gameMode == GameMode.inTeam)
             return this.httpClient.post(this.url + ':5221/api/Catchy/GameMode?mode=inTeam', gameMode);
