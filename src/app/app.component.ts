@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 export class AppComponent {
 
   gameMode: GameMode = GameMode.inWar;
-  gameStage: GameStage = GameStage.TeamName;
+  gameStage: GameStage = GameStage.playVideo;
   showTopScore: ShowTopScore = ShowTopScore.today;
   public get GameStage(): typeof GameStage {
     return GameStage;
