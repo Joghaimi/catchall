@@ -9,12 +9,13 @@ import { GameMode, Player, Score, Team, TopScore } from '../models/player';
 export class TeamService {
 
     constructor(private httpClient: HttpClient) { }
-
+    // url = "http://catchy.local";
+    url = "http://localhost";
     SelectGameMode(gameMode: GameMode) {
-        if(gameMode == GameMode.inTeam)
-            return this.httpClient.post('http://catchy.local:5221/api/Catchy/GameMode?mode=inTeam' , gameMode);
+        if (gameMode == GameMode.inTeam)
+            return this.httpClient.post(this.url + ':5221/api/Catchy/GameMode?mode=inTeam', gameMode);
         else
-            return this.httpClient.post('http://catchy.local:5221/api/Catchy/GameMode?mode=inWar' , gameMode);
+            return this.httpClient.post(this.url + ':5221/api/Catchy/GameMode?mode=inWar', gameMode);
 
     }
 
@@ -22,39 +23,39 @@ export class TeamService {
 
 
     TopScore() {
-        return this.httpClient.get<TopScore>('http://catchy.local:5221/api/Catchy/TopScore');
+        return this.httpClient.get<TopScore>(this.url + ':5221/api/Catchy/TopScore');
     }
     ThisMonthTopScore() {
-        return this.httpClient.get<Score>('http://catchy.local:5221/api/Catchy/GetThisMonthTopScore');
+        return this.httpClient.get<Score>(this.url + ':5221/api/Catchy/GetThisMonthTopScore');
     }
     ThisWeekTopScore() {
-        return this.httpClient.get<Score>('http://catchy.local:5221/api/Catchy/GetThisWeekTopScore');
+        return this.httpClient.get<Score>(this.url + ':5221/api/Catchy/GetThisWeekTopScore');
     }
     ThisDayThopScore() {
-        return this.httpClient.get<Score>('http://catchy.local:5221/api/Catchy/GetThisMonthTopScore');
+        return this.httpClient.get<Score>(this.url + ':5221/api/Catchy/GetThisMonthTopScore');
     }
 
 
     ThisDayTopThreeScore() {
-        return this.httpClient.get<Score[]>('http://catchy.local:5221/api/Catchy/GetTodayTopThreeScore');
+        return this.httpClient.get<Score[]>(this.url + ':5221/api/Catchy/GetTodayTopThreeScore');
     }
     ThisMonthTopThreeScore() {
-        return this.httpClient.get<Score[]>('http://catchy.local:5221/api/Catchy/GetThisMonthTopThreeScore');
+        return this.httpClient.get<Score[]>(this.url + ':5221/api/Catchy/GetThisMonthTopThreeScore');
     }
     ThisWeekTopThreeScore() {
-        return this.httpClient.get<Score[]>('http://catchy.local:5221/api/Catchy/GetThisWeekThreeScore');
+        return this.httpClient.get<Score[]>(this.url + ':5221/api/Catchy/GetThisWeekThreeScore');
     }
 
 
     RoomTime() {
-        return this.httpClient.get<number>('http://catchy.local:5221/api/Catchy/CurrentTime');
+        return this.httpClient.get<number>(this.url + ':5221/api/Catchy/CurrentTime');
     }
     SendTeamMamber(Team: Team) {
-        return this.httpClient.post('http://catchy.local:5221/api/Catchy/ReceiveScore', Team);
+        return this.httpClient.post(this.url + ':5221/api/Catchy/ReceiveScore', Team);
     }
     getTeamScore(): Observable<Team> {
         // return this.httpClient.get('https://' + roomName1 + '.local:7248/api/' + roomName + '/GetScore');
-        return this.httpClient.get<Team>('http://catchy.local:5221/api/Catchy/GetScore');
+        return this.httpClient.get<Team>(this.url + ':5221/api/Catchy/GetScore');
     }
 
     getRound(roomName1: string, roomName: string): Observable<any> {

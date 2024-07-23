@@ -110,8 +110,7 @@ export class AppComponent {
     //   this.gameTime = 120;
     //   this.gameStage = GameStage.TeamName;
     // }
-
-
+    // this.gameStage = GameStage.TeamName;
     this.teamService.SelectGameMode(gameMode).subscribe(
       e => {
         if (this.gameMode == GameMode.inWar) {
@@ -120,7 +119,9 @@ export class AppComponent {
         }
         else {
           this.gameTime = 120;
+          this.initKeyboard();
           this.gameStage = GameStage.TeamName;
+
         }
 
 
@@ -247,10 +248,10 @@ export class AppComponent {
 
 
   ngAfterViewInit() {
-    this.keyboard = new Keyboard({
-      onChange: input => this.onChange(input),
-      onKeyPress: button => this.onKeyPress(button)
-    });
+    // this.keyboard = new Keyboard({
+    //   onChange: input => this.onChange(input),
+    //   onKeyPress: button => this.onKeyPress(button)
+    // });
   }
   initKeyboard() {
     this.keyboard = new Keyboard({
